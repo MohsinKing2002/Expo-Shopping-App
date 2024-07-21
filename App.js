@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
 import Home from "./src/Screens/Home";
-import Header from "./src/Components/Header";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductDetails from "./src/Screens/ProductDetails";
 import { PaperProvider } from "react-native-paper";
+import OrderConfirmScreen from "./src/Screens/OrderConfirm";
+import OrderSuccessScreen from "./src/Screens/OrderSuccess";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -22,6 +22,16 @@ export default function App() {
             options={{ headerShown: false }}
             name="productDetails"
             component={ProductDetails}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="orderConfirm"
+            component={OrderConfirmScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="orderSuccess"
+            component={OrderSuccessScreen}
           />
         </Stack.Navigator>
         <StatusBar backgroundColor="white" style="auto" />

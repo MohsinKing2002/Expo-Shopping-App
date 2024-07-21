@@ -6,8 +6,8 @@ import {
   Feather,
   Entypo,
 } from "@expo/vector-icons";
-import { Avatar, Modal, Portal } from "react-native-paper";
-import { containerStyle } from "../Utils";
+import { Avatar, Divider, Modal, Portal } from "react-native-paper";
+import { containerStyle, styles } from "../Utils";
 import DrawerButton from "./DrawerButton";
 
 const Header = () => {
@@ -25,7 +25,7 @@ const Header = () => {
           size={40}
         />
       </TouchableOpacity>
-      <View className="bg-black p-2 rounded-full">
+      <View className="bg-black p-2.5 rounded-full">
         <SimpleLineIcons name="handbag" size={20} color="white" />
       </View>
 
@@ -33,28 +33,42 @@ const Header = () => {
         <Modal
           visible={visible}
           onDismiss={hideModal}
-          contentContainerStyle={containerStyle}
+          contentContainerStyle={styles}
         >
           <View className="flex-1">
-            <View className="my-6 flex items-center">
-              <View className="bg-black p-4 rounded-full mb-2">
-                <SimpleLineIcons name="handbag" size={22} color="white" />
-              </View>
-              <Text className="text-2xl font-bold tracking-wider">
-                Mohsin King
+            {/**************************** drawer buttons *************************/}
+            <View className="flex items-center flex-row justify-between px-4 pt-6 pb-2">
+              <Text className="font-extrabold text-[22px] tracking-wider">
+                QuickShop
               </Text>
+              <TouchableOpacity onPress={hideModal}>
+                <AntDesign name="closecircleo" size={24} color="black" />
+              </TouchableOpacity>
             </View>
+            <Divider />
+            <View className="px-5">
+              {/**************************** User *************************/}
+              <View className="my-7 flex items-center">
+                <View className="bg-black p-4 rounded-full mb-2">
+                  <SimpleLineIcons name="handbag" size={22} color="white" />
+                </View>
+                <Text className="text-2xl font-bold tracking-wider">
+                  Mohsin King
+                </Text>
+              </View>
 
-            <DrawerButton title="Home">
-              <Entypo name="home" size={18} color="white" />
-            </DrawerButton>
-            <DrawerButton title="Explore">
-              <Feather name="search" size={16} color="white" />
-            </DrawerButton>
-            <DrawerButton title="Wishlist" />
-            <DrawerButton title="Cart">
-              <Feather name="shopping-cart" size={16} color="white" />
-            </DrawerButton>
+              {/**************************** drawer buttons *************************/}
+              <DrawerButton title="Home">
+                <Entypo name="home" size={18} color="white" />
+              </DrawerButton>
+              <DrawerButton title="Explore">
+                <Feather name="search" size={16} color="white" />
+              </DrawerButton>
+              <DrawerButton title="Wishlist" />
+              <DrawerButton title="Cart">
+                <Feather name="shopping-cart" size={16} color="white" />
+              </DrawerButton>
+            </View>
           </View>
         </Modal>
       </Portal>

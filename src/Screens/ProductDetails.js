@@ -86,7 +86,11 @@ const ProductDetails = ({ navigation, route }) => {
             <AntDesign name="plus" size={16} color="white" />
           </DrawerButton> */}
           <TouchableOpacity
-            onPress={() => showCommingSoon()}
+            onPress={() =>
+              navigation.navigate("orderConfirm", {
+                Products: [ProductDetails],
+              })
+            }
             className={`bg-black border border-gray-700 py-2 px-3 rounded-lg my-1 flex items-center flex-row`}
           >
             <View className="bg-white p-2 rounded-full mr-3">
