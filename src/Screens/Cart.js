@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Modal, Portal, TextInput as TextInputRNP } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import Header from "../Components/Header";
 import DrawerButton from "../Components/DrawerButton";
-import { centerStyle, containerStyle, showCommingSoon } from "../Utils";
+import {
+  centerStyle,
+  containerStyle,
+  fetchProduct,
+  showCommingSoon,
+} from "../Utils";
 import Gif from "../../assets/success.gif";
 
 const ProductCard = ({ product }) => {
@@ -32,9 +37,24 @@ const ProductCard = ({ product }) => {
 const outline = "rgb(229 231 235)",
   activeOutline = "rgb(75 85 99)";
 
-const OrderConfirmScreen = ({ navigation, route }) => {
-  const { Products } = route?.params;
-  // console.log("product", Products);
+const MyCart = ({ navigation, route }) => {
+  const cart = [1, 2, 5, 8, 15];
+  const [Products, setProducts] = useState([]);
+  // console.log("products", Products);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const result = await fetchProduct(cart);
+        setProducts(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    loadData();
+  }, []);
+
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="p-4">
@@ -51,42 +71,6 @@ const OrderConfirmScreen = ({ navigation, route }) => {
               {Products?.map((product) => (
                 <ProductCard key={product?.id} product={product} />
               ))}
-              {/* <ProductCard product={Products[0]} />
-              <ProductCard product={Products[0]} />
-              <ProductCard product={Products[0]} /> */}
-            </View>
-
-            {/******************* order confirmation form @ address ************************/}
-            <View>
-              <Text className="pt-3 text-base font-extrabold text-gray-500 tracking-wider">
-                Delivery Address :
-              </Text>
-              <View className="flex items-stretch gap-2">
-                <TextInputRNP
-                  label="Address"
-                  mode="outlined"
-                  outlineColor={outline}
-                  activeOutlineColor={activeOutline}
-                  // value={text}
-                  // onChangeText={text => setText(text)}
-                />
-                <TextInputRNP
-                  label="Landmark"
-                  mode="outlined"
-                  outlineColor={outline}
-                  activeOutlineColor={activeOutline}
-                  // value={text}
-                  // onChangeText={text => setText(text)}
-                />
-                <TextInputRNP
-                  label="Pin Code"
-                  mode="outlined"
-                  outlineColor={outline}
-                  activeOutlineColor={activeOutline}
-                  // value={text}
-                  // onChangeText={text => setText(text)}
-                />
-              </View>
             </View>
 
             {/****************************** Price Details **************************************/}
@@ -102,7 +86,7 @@ const OrderConfirmScreen = ({ navigation, route }) => {
                     ellipsizeMode="tail"
                     className="w-3/4 text-base font-bold text-gray-500 tracking-wider"
                   >
-                    {Products[0].title}{" "}
+                    {/* {Products[0].title}{" "} */}
                     glhglhlghlghlghlhglhghlglhalghlglhlghlglhglhlghlhglhglhlghlgh
                   </Text>
                   <Text className="text-base font-extrabold text-gray-700 tracking-wider">
@@ -122,15 +106,15 @@ const OrderConfirmScreen = ({ navigation, route }) => {
             </View>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate("orderSuccess")}
+              onPress={() =>
+                navigation.navigate("orderConfirm", { Products: Products })
+              }
               className={`bg-black border border-gray-700 py-2 px-3 rounded-lg my-1 flex items-center justify-center flex-row`}
             >
               <View className="bg-white p-2 rounded-full mr-3">
                 <AntDesign name="check" size={16} color="black" />
               </View>
-              <Text className="font-bold text-white text-xl">
-                Confirm Order
-              </Text>
+              <Text className="font-bold text-white text-xl">Place Order</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -139,4 +123,4 @@ const OrderConfirmScreen = ({ navigation, route }) => {
   );
 };
 
-export default OrderConfirmScreen;
+export default MyCart;

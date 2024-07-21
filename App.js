@@ -6,6 +6,7 @@ import ProductDetails from "./src/Screens/ProductDetails";
 import { PaperProvider } from "react-native-paper";
 import OrderConfirmScreen from "./src/Screens/OrderConfirm";
 import OrderSuccessScreen from "./src/Screens/OrderSuccess";
+import MyCart from "./src/Screens/Cart";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -22,6 +23,11 @@ export default function App() {
             options={{ headerShown: false }}
             name="productDetails"
             component={ProductDetails}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="cart"
+            component={MyCart}
           />
           <Stack.Screen
             options={{ headerShown: false }}

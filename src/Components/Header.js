@@ -9,8 +9,10 @@ import {
 import { Avatar, Divider, Modal, Portal } from "react-native-paper";
 import { containerStyle, styles } from "../Utils";
 import DrawerButton from "./DrawerButton";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
+  const navigation = useNavigation();
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
@@ -58,14 +60,30 @@ const Header = () => {
               </View>
 
               {/**************************** drawer buttons *************************/}
-              <DrawerButton title="Home">
+              <DrawerButton
+                isDrawer={true}
+                hideModal={hideModal}
+                navigation={navigation}
+                link={"home"}
+                title="Home"
+              >
                 <Entypo name="home" size={18} color="white" />
               </DrawerButton>
-              <DrawerButton title="Explore">
+              <DrawerButton
+                isDrawer={true}
+                hideModal={hideModal}
+                title="Explore"
+              >
                 <Feather name="search" size={16} color="white" />
               </DrawerButton>
-              <DrawerButton title="Wishlist" />
-              <DrawerButton title="Cart">
+              <DrawerButton title="Orders" />
+              <DrawerButton
+                isDrawer={true}
+                hideModal={hideModal}
+                navigation={navigation}
+                link={"cart"}
+                title="Cart"
+              >
                 <Feather name="shopping-cart" size={16} color="white" />
               </DrawerButton>
             </View>

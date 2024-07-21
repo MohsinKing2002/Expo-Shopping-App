@@ -15,7 +15,12 @@ const OrderSuccessScreen = ({ navigation, route }) => {
           Happy Shopping !
         </Text>
 
-        <DrawerButton cn={"w-52 mt-6"} title="Shop More">
+        <DrawerButton
+          navigation={navigation}
+          link={"home"}
+          cn={"w-52 mt-6 mb-3"}
+          title="Shop More"
+        >
           <Feather name="shopping-cart" color={"white"} size={16} />
         </DrawerButton>
         <DrawerButton cn={"w-52"} title="View Orders" />

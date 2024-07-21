@@ -31,3 +31,18 @@ export const containerStyle = {
 export const showCommingSoon = () => {
   return alert("Feature Comming soon.");
 };
+
+export const fetchProduct = async (cart) => {
+  try {
+    let arr = [];
+    for (let item of cart) {
+      const data = await (
+        await fetch(`https://fakestoreapi.com/products/${item}`)
+      ).json();
+      arr.push(data);
+    }
+    return arr;
+  } catch (error) {
+    console.log("error fetching product", error);
+  }
+};
