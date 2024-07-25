@@ -16,8 +16,7 @@ const OrderSuccessScreen = ({ navigation, route }) => {
         </Text>
 
         <DrawerButton
-          navigation={navigation}
-          link={"home"}
+          onPress={() => navigation.navigate("home")}
           cn={"w-52 mt-6 mb-3"}
           title="Shop More"
         >

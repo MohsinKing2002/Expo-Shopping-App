@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import Header from "../Components/Header";
 import DrawerButton from "../Components/DrawerButton";
-import { showCommingSoon } from "../Utils";
+import { addToCart, showCommingSoon } from "../Utils";
 
 const ProductDetails = ({ navigation, route }) => {
   const { ProductDetails } = route?.params;
+  const [showGoToCart, setShowGoToCart] = useState(false);
+  const map = new Map();
+  map.set(ProductDetails.id, 0);
   //   console.log("product", ProductDetails);
   return (
     <SafeAreaView className="h-full bg-white">
@@ -49,7 +52,7 @@ const ProductDetails = ({ navigation, route }) => {
               <Text className="text-base text-gray-500 font-extrabold tracking-wider">
                 Price :
               </Text>
-              <Text className="ml-3 text-lg font-bold text-gray-700">
+              <Text className="ml-3 text-lg text-green-700 font-extrabold">
                 $ {ProductDetails?.price}
               </Text>
             </View>
@@ -78,8 +81,19 @@ const ProductDetails = ({ navigation, route }) => {
             </View>
           </View>
         </View>
-        <View className="mt-2 flex flex-row items-center">
-          <DrawerButton cn={"px-3 mr-2.5"} title="Add to Cart">
+        <View className="mt-2 flex flex-row items-center justify-between">
+          <DrawerButton
+            onPress={() => {
+              if (showGoToCart) {
+                navigation.navigate("cart");
+              } else {
+                addToCart(ProductDetails.id);
+                setShowGoToCart(true);
+              }
+            }}
+            cn={"px-3 mr-2.5"}
+            title={showGoToCart ? "Go to Cart" : "Add to Cart"}
+          >
             <Feather name="shopping-cart" size={16} color="white" />
           </DrawerButton>
           {/* <DrawerButton cn={"px-3"} title="Order Now">
@@ -88,7 +102,11 @@ const ProductDetails = ({ navigation, route }) => {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate("orderConfirm", {
-                Products: [ProductDetails],
+                Data: {
+                  Products: [ProductDetails],
+                  map: map,
+                  totalPrice: ProductDetails.price,
+                },
               })
             }
             className={`bg-black border border-gray-700 py-2 px-3 rounded-lg my-1 flex items-center flex-row`}

@@ -7,7 +7,7 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 import { Avatar, Divider, Modal, Portal } from "react-native-paper";
-import { containerStyle, styles } from "../Utils";
+import { containerStyle, showCommingSoon, styles } from "../Utils";
 import DrawerButton from "./DrawerButton";
 import { useNavigation } from "@react-navigation/native";
 
@@ -61,27 +61,28 @@ const Header = () => {
 
               {/**************************** drawer buttons *************************/}
               <DrawerButton
-                isDrawer={true}
-                hideModal={hideModal}
-                navigation={navigation}
-                link={"home"}
+                onPress={() => {
+                  navigation.navigate("home");
+                  hideModal();
+                }}
                 title="Home"
               >
                 <Entypo name="home" size={18} color="white" />
               </DrawerButton>
               <DrawerButton
-                isDrawer={true}
-                hideModal={hideModal}
+                onPress={() => {
+                  showCommingSoon();
+                }}
                 title="Explore"
               >
                 <Feather name="search" size={16} color="white" />
               </DrawerButton>
-              <DrawerButton title="Orders" />
+              <DrawerButton onPress={() => showCommingSoon()} title="Orders" />
               <DrawerButton
-                isDrawer={true}
-                hideModal={hideModal}
-                navigation={navigation}
-                link={"cart"}
+                onPress={() => {
+                  navigation.navigate("cart");
+                  hideModal();
+                }}
                 title="Cart"
               >
                 <Feather name="shopping-cart" size={16} color="white" />

@@ -7,6 +7,7 @@ import { PaperProvider } from "react-native-paper";
 import OrderConfirmScreen from "./src/Screens/OrderConfirm";
 import OrderSuccessScreen from "./src/Screens/OrderSuccess";
 import MyCart from "./src/Screens/Cart";
+import Explore from "./src/Screens/Explore";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -38,6 +39,11 @@ export default function App() {
             options={{ headerShown: false }}
             name="orderSuccess"
             component={OrderSuccessScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="explore"
+            component={Explore}
           />
         </Stack.Navigator>
         <StatusBar backgroundColor="white" style="auto" />

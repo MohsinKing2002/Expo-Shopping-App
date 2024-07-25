@@ -35,7 +35,7 @@ const ProductCard = ({ navigation, item, title, img, category, price }) => {
         <Text className="text-sm font-bold capitalize text-gray-500">
           {category}
         </Text>
-        <Text className="text-base font-extrabold tracking-wider">
+        <Text className="text-base font-extrabold text-green-700 tracking-wider">
           $ {price}
         </Text>
       </View>
