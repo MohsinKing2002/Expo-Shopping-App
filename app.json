@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "QuickShop",
-    "slug": "QuickShop",
+    "slug": "reverd-harbals",
     "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "black"
+      "backgroundColor": "#000000"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
