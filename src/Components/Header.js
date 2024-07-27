@@ -71,7 +71,9 @@ const Header = () => {
               </DrawerButton>
               <DrawerButton
                 onPress={() => {
-                  showCommingSoon();
+                  navigation.navigate("explore");
+                  hideModal();
+                  // showCommingSoon();
                 }}
                 title="Explore"
               >

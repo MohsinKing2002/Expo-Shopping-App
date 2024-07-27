@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import DrawerButton from "../Components/DrawerButton";
 import Gif from "../../assets/success.gif";
+import { showCommingSoon } from "../Utils";
 
 const OrderSuccessScreen = ({ navigation, route }) => {
   return (
@@ -22,7 +23,11 @@ const OrderSuccessScreen = ({ navigation, route }) => {
         >
           <Feather name="shopping-cart" color={"white"} size={16} />
         </DrawerButton>
-        <DrawerButton cn={"w-52"} title="View Orders" />
+        <DrawerButton
+          onPress={showCommingSoon}
+          cn={"w-52"}
+          title="View Orders"
+        />
       </View>
     </SafeAreaView>
   );

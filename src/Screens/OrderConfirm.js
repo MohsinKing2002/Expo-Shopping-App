@@ -157,7 +157,10 @@ const OrderConfirmScreen = ({ navigation, route }) => {
                   Payment Method :
                 </Text>
                 <Text className="text-lg font-extrabold text-green-700 tracking-wider">
-                  $ {(totalPrice - 10).toFixed(2)}
+                  ${" "}
+                  {Products.length > 1
+                    ? (totalPrice - 10).toFixed(2)
+                    : totalPrice.toFixed(2)}
                 </Text>
               </View>
               {Payments?.map((item) => (

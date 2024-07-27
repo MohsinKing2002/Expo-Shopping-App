@@ -7,7 +7,7 @@ import {
   TextInput as TextInputRNP,
 } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { AntDesign, Feather, MaterialIcons } from "@expo/vector-icons";
 import Header from "../Components/Header";
 import DrawerButton from "../Components/DrawerButton";
 import {
@@ -83,7 +83,7 @@ const outline = "rgb(229 231 235)",
   activeOutline = "rgb(75 85 99)";
 
 const pricings = [
-  { id: 1, title: "Discount", value: -10 },
+  { id: 1, title: "Discount", value: 10 },
   { id: 2, title: "Delivery Charges", value: 0 },
   { id: 3, title: "Shipping Charges", value: 0 },
 ];
@@ -183,8 +183,14 @@ const MyCart = ({ navigation, route }) => {
                         <Text className="text-base font-bold text-gray-500 tracking-wider">
                           {item.title}
                         </Text>
-                        <Text className="text-base font-extrabold text-green-700 tracking-wider">
-                          $ {item.value}
+                        <Text
+                          className={`text-base font-extrabold text-green-700 tracking-wider ${
+                            item.id == 1 &&
+                            Products.length < 2 &&
+                            "text-gray-500 font-bold line-through"
+                          }`}
+                        >
+                          $ {item.value}{" "}
                         </Text>
                       </View>
                     ))}
@@ -194,9 +200,24 @@ const MyCart = ({ navigation, route }) => {
                         Total Price
                       </Text>
                       <Text className="text-lg font-extrabold text-green-700 tracking-wider">
-                        $ {(totalPrice - 10).toFixed(2)}
+                        ${" "}
+                        {Products.length > 1
+                          ? (totalPrice - 10).toFixed(2)
+                          : totalPrice.toFixed(2)}
                       </Text>
                     </View>
+                  </View>
+                  <View className="flex items-center flex-row px-1 pt-3 pb-1.5">
+                    <MaterialIcons
+                      name="attach-money"
+                      size={24}
+                      color="green"
+                    />
+                    <Text className="pl-3 flex-shrink text-sm font-bold text-gray-500 tracking-wider">
+                      {Products.length > 1
+                        ? "$ 10 Discount is automatically applied for purchasing 2 different Items."
+                        : "$ 10 Discount is only applicable on purchasing 2 different Items."}
+                    </Text>
                   </View>
 
                   <View className="flex items-center flex-row px-1 py-3 ">

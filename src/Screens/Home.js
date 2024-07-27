@@ -127,7 +127,7 @@ const Home = ({ navigation }) => {
         <View className="flex gap-0.5">
           <Text className="font-bold text-2xl">Hey Welcome,</Text>
           <Text className="font-medium text-lg text-gray-500">
-            Explore and Buy the latest products.
+            Explore and Buy the Premium Products.
           </Text>
         </View>
         {/* *************** Searchbar and filter ********************/}

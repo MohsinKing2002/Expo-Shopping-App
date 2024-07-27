@@ -17,8 +17,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "black"
+        "foregroundImage": "./assets/adaptive-icon.jpeg",
+        "backgroundColor": "#000000"
       },
       "package": "com.mohsinking2002.reverdharbals"
     },
